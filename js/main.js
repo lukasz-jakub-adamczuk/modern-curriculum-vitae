@@ -85,3 +85,21 @@ PersonalData.addElement(Mobile);
 PersonalData.addElement(Email);
 PersonalData.addElement(Website);
 PersonalData.addElement(Birthdate);
+
+
+
+
+$(document).ready(function() {
+	setTimeout(function() {
+		var source   = $("#form-group-template").html();
+		var template = Handlebars.compile(source);
+
+		var group   = {name: "My New Post", description: "This is my first post!"};
+		var html    = template(group);
+
+		$('#editor').append(html);
+	}, 3000);
+});
+
+
+

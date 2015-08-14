@@ -3,6 +3,17 @@
 <head>
 	<title>Modern Curriculum Vitae</title>
 	<link rel="stylesheet" type="text/css" href="css/base.css">
+
+	<!-- templates -->
+	<script id="form-group-template" type="text/x-handlebars-template">
+		<div class="form-group">
+			<label for="group-name">
+			<input id="group-name" name="group-name" type="text" value="{{group.name}}" />
+			<div class="body">
+				{{group.description}}
+			</div>
+		</div>
+	</script>
 </head>
 <body>
 	<h1>Modern Curriculum Vitae</h1>
