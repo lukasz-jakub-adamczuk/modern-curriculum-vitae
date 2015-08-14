@@ -1,4 +1,42 @@
 /* all styles goes here */
-.yourimage {
-   border: 1px solid black;
+body {
+	background-color: #f0f0f0;
+}
+
+header {
+	background-color: #35b6ce;
+	padding: 20px 0px 20px;
+	color: #fff;
+}
+
+#yourimage {
+	background-color: #cbcbcb;
+	height: 185px;
+}
+
+#education {
+	background-color: #fff;
+	padding: 20px 0px 20px;
+	color: #6a6a6a;
+}
+
+#experiance {
+	background-color: #35b6ce;
+	padding: 20px 0px 20px;
+	color: #fff;
+}
+
+#skills {
+	background-color: #fff;
+	padding: 20px 0px 20px;
+	color: #6a6a6a;
+}
+
+footer {
+	background-color: #35b6ce;
+	color: #fff;
+}
+
+footer p {
+	margin: 5px 0px 5px;
 }
