@@ -1,6 +1,10 @@
 /* all styles goes here */
 body {
-	background-color: #f0f0f0;
+	/*background-color: #f0f0f0;*/
+}
+
+.container + .container {
+	background: #abc;
 }
 
 header {
@@ -18,7 +22,7 @@ header {
 	background-color: #fff;
 	padding: 20px 0px 20px;
 	color: #6a6a6a;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #experiance {

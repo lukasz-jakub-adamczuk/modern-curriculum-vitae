@@ -6,46 +6,76 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>	
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<a class="btn btn-primary btn-sm" id="edit-mode-trg" href="new" role="button">Edit mode</a>
-				<a class="btn btn-primary btn-sm" id="preview-mode-trg" href="new" role="button">Preview mode</a>	
+		<!-- <div id="intro-mode"> -->
+			<!-- <div class="header clearfix">
+				<nav>
+					<ul class="nav nav-pills pull-right">
+						<li role="presentation" class="active"><a href="#">Home</a></li>
+						<li role="presentation"><a href="#">About</a></li>
+						<li role="presentation"><a href="#">Contact</a></li>
+					</ul>
+				</nav>
+				<h3 class="text-muted">Project name</h3>
+			</div> -->
+			<div id="starter" class="jumbotron">
+				<h1>Modern Curriculum Vitae</h1>
+				<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+				<p>
+					<button class="btn btn-success btn-lg" id="start-mode-tgr" role="button">Create now</button>
+				</p>
 			</div>
-		</div>
-	</div>
-	
-	<div class="container">
-		<div id="edit-mode">
+			<div id="modes" class="jumbotron" style="display: none;">
+				<p>
+					<button class="btn btn-default btn-lg" id="edit-mode-tgr" role="button">Edit mode</button>
+					<button class="btn btn-default btn-lg" id="preview-mode-tgr" role="button">Preview mode</button>
+				</p>
+			</div>
+		<!-- </div> -->
+		<div id="edit-mode" style="display: none;">
+			<nav class="cv-sections">
+				<ul class="nav nav-pills nav-justified">
+					<li><a href="#">Personal<br>Data</a></li>
+					<li><a href="#">Education</a></li>
+					<li><a href="#">Work<br>Experience</a></li>
+					<li><a href="#">Projects</a></li>
+					<li><a href="#">Skills</a></li>
+					<li><a href="#">Achievements<br>and<br>Awards</a></li>
+					<li><a href="#">Languages</a></li>
+					<li><a href="#">Interests<br>and<br>Activities</a></li>
+				</ul>
+			</nav>
 			<section id="personal-data">
 				<div class="row">
 					<div class="col-lg-8">
 						<form class="form" role="form">
-							<div class="row control-group">
+							<div class="row form-group">
 								<div class="col-lg-12">
 									<label>Name:</label>
-									<input type="text" class="form-control" id="name">
+									<input type="text" class="form-control" name="name">
 								</div>
 							</div>
-							<div class="row control-group">
+							<div class="row form-group">
 								<div class="col-lg-12">
 									<label>Email:</label>
-									<input type="text" class="form-control" id="email">
+									<input type="text" class="form-control" name="email">
 								</div>
 							</div>
-							<div class="row control-group">
+							<div class="row form-group">
 								<div class="col-lg-12">
 									<label>Phone:</label>
-									<input type="text" class="form-control" id="phone">
+									<input type="text" class="form-control" name="phone">
 								</div>
 							</div>
-							<div class="row control-group">
+							<div class="row form-group">
 								<div class="col-lg-12">
 									<label>Address:</label>
-									<input type="text" class="form-control" id="address">
+									<input type="text" class="form-control" name="address">
 								</div>
 							</div>
 						</form>
@@ -60,31 +90,37 @@
 				</div>
 			</section>
 			
-			<section id="education">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12">
-							<h2>Education</h2>
-							<form class="form">
-								<div class="form-group">
-									<label>Collage name:</label>
-									<input type="text" class="form-control" id="collagename">
-								</div>
-								<div class="form-group">
-									<label>Description:</label>
-									<textarea class="form-control" rows="3"></textarea>
-								</div>
-							</form>
-							<div class="editor">
-								<a class="btn btn-primary btn-sm" href="new" role="button">Add new collage</a>
-								<a class="btn btn-success btn-sm" href="new" role="button">Save</a>
+			<section id="education" style="display: none;">
+				<div class="row">
+					<div class="col-lg-12">
+						<h2>Education</h2>
+						<form class="form">
+							<div class="form-group">
+								<label>Collage name:</label>
+								<input type="text" class="form-control" name="collage-name">
 							</div>
+							<div class="form-group">
+								<label>From:</label>
+								<input type="text" class="form-control" name="from">
+							</div>
+							<div class="form-group">
+								<label>To:</label>
+								<input type="text" class="form-control" name="to">
+							</div>
+							<div class="form-group">
+								<label>Description:</label>
+								<textarea class="form-control" rows="3" name="description"></textarea>
+							</div>
+						</form>
+						<div class="editor">
+							<button class="btn btn-primary btn-sm" href="new" role="button">Add new collage</button>
+							<!-- <button class="btn btn-success btn-sm" href="new" role="button">Save</button> -->
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="experiance">
+			<section id="experience" style="display: none;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -108,7 +144,7 @@
 				</div>
 			</section>
 
-			<section id="skills">
+			<section id="skills" style="display: none;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -132,7 +168,7 @@
 				</div>
 			</section>
 
-			<section id="footer">
+			<section id="footer" style="display: none;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -142,13 +178,14 @@
 				</div>
 			</section>
 		</div>
-		<div id="preview-mode">
+		<div id="preview-mode" style="display: none;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-lg-offset-4">
 						<h1>Personal Data</h1>
 					</div>
 				</div>
+				<div class="data"></div>
 
 				<div class="container">
 				<div class="row">
@@ -169,11 +206,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div>
-		
-	</div>
-
 
 
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>

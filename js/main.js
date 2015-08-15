@@ -78,35 +78,46 @@ PersonalData = new Group();
 
 // PersonalData.setName('PersonalData');
 
-Address = new Element('Address', 'al. I. Daszynskiego 28/18, 31-534 Krakow');
+// Address = new Element('Address', 'al. I. Daszynskiego 28/18, 31-534 Krakow');
 // Mobile = new Element('Mobile', '+48 509 271 306');
 // Email = new Element('Email', 'lukasz.jakub.adamczuk@gmail.com');
 // Website = new Element('Website', 'adamczuk.net.pl');
 // Birthdate = new Element('Birthdate', 'February 10, 1983');
 
-PersonalData.addElement(Address);
+// PersonalData.addElement(Address);
 // PersonalData.addElement(Mobile);
 // PersonalData.addElement(Email);
 // PersonalData.addElement(Website);
 // PersonalData.addElement(Birthdate);
 
 
-
-var editMode = function() {
-	$('#edit-mode-tgr').toggleClass('btn-primary').toggleClass('btn-default');
-	$('#preview-mode-tgr').toggleClass('btn-default').toggleClass('btn-primary');
-
-	$('#edit-mode').show();
-	$('#preview-mode').hide();
+var startMode = function() {
+	$('#starter').fadeOut(500);
+	setTimeout(function() {
+		$('#modes').fadeIn(500)
+	}, 500);
 };
-var previewMode = function() {	
-	$('#preview-mode-tgr').toggleClass('btn-primary').toggleClass('btn-default');
-	$('#edit-mode-tgr').toggleClass('btn-default').toggleClass('btn-primary');
+var editMode = function() {
+	if ($('#edit-mode').is(':hidden')) {
+		$('#edit-mode-tgr').addClass('btn-primary').removeClass('btn-default');
+		$('#preview-mode-tgr').addClass('btn-default').removeClass('btn-primary');
 
-	$('#preview-mode').show();
-	$('#edit-mode').hide();
+		$('#edit-mode').show();
+		$('#preview-mode').hide();
+	}
+};
+var previewMode = function() {
+	if ($('#preview-mode').is(':hidden')) {
+		$('#preview-mode-tgr').addClass('btn-primary').removeClass('btn-default');
+		$('#edit-mode-tgr').addClass('btn-default').removeClass('btn-primary');
+
+		$('#preview-mode').show();
+		$('#edit-mode').hide();
+	}
 };
 var saveFormData = function() {
+	// PersonalData = new Group();
+
 	// personal data
 	var pd = $('#personal-data form :input');
 
@@ -140,19 +151,38 @@ var renderFormData = function() {
 	$('#preview-mode .data').html(html);
 };
 
+var copyForm = function(button, selector) {
+	$(button).parent().before(
+		$(selector).clone()
+	);
+};
+
+
+
+
+
+
 
 $(document).ready(function() {
-	// initial state
+	// intro
+	$('#start-mode-tgr').click(function() {
+		startMode();
+	});
+
+	// navigation
 	$('#edit-mode-tgr').click(function() {
 		editMode();
 	});
 
 	$('#preview-mode-tgr').click(function() {
 		previewMode();
-
 		saveFormData();
-
 		renderFormData();
+	});
+
+	// education
+	$('#education .editor button').click(function() {
+		copyForm(this, '#education form');
 	});
 });
 
