@@ -18,25 +18,29 @@ header {
 	background-color: #fff;
 	padding: 20px 0px 20px;
 	color: #6a6a6a;
+	visibility: hidden;
 }
 
 #experiance {
 	background-color: #35b6ce;
 	padding: 20px 0px 20px;
 	color: #fff;
+	visibility: hidden;
 }
 
 #skills {
 	background-color: #fff;
 	padding: 20px 0px 20px;
 	color: #6a6a6a;
+	visibility: hidden;
 }
 
-footer {
+#footer {
 	background-color: #35b6ce;
 	color: #fff;
+	visibility: hidden;
 }
 
-footer p {
+#footer p {
 	margin: 5px 0px 5px;
 }

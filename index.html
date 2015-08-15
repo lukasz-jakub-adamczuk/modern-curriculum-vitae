@@ -9,21 +9,17 @@
 </head>	
 
 <body>
-	<nav>
-		<button class="btn btn-default">Edit Mode</button>
-	</nav>
-	<nav>
-		<ul class="nav nav-pills">
-			<li>
-				<a href="">Personal Data</a>
-			</li>
-			<li>
-				<a href="">Education</a>
-			</li>
-		</ul>>
-	</nav>
 	<div class="container">
-		<div id="editor-mode">
+		<div class="row">
+			<div class="col-lg-8">
+				<a class="btn btn-primary btn-sm" id="edit-mode-trg" href="new" role="button">Edit mode</a>
+				<a class="btn btn-primary btn-sm" id="preview-mode-trg" href="new" role="button">Preview mode</a>	
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div id="edit-mode" class="primary">
 			<section>
 				<div class="container">
 					<div class="row">
@@ -139,7 +135,7 @@
 				</div>
 			</section>
 
-			<section>
+			<section id="footer">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -149,8 +145,8 @@
 				</div>
 			</section>
 		</div>
-		<div id="preview-mode">
-			...
+		<div id="preview-mode" class="default">
+			<h1>To jest preview mode</h1>
 		</div>
 	</div>
 
