@@ -19,46 +19,43 @@
 	</div>
 	
 	<div class="container">
-		<div id="edit-mode" class="primary">
-			<section>
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8">
-							<form class="form" role="form">
-								<div class="row control-group">
-									<div class="col-lg-12">
-										<label>Name:</label>
-										<input type="text" class="form-control" id="name">
-									</div>
+		<div id="edit-mode">
+			<section id="personal-data">
+				<div class="row">
+					<div class="col-lg-8">
+						<form class="form" role="form">
+							<div class="row control-group">
+								<div class="col-lg-12">
+									<label>Name:</label>
+									<input type="text" class="form-control" id="name">
 								</div>
-								<div class="row control-group">
-									<div class="col-lg-12">
-										<label>Email:</label>
-										<input type="text" class="form-control" id="email">
-									</div>
+							</div>
+							<div class="row control-group">
+								<div class="col-lg-12">
+									<label>Email:</label>
+									<input type="text" class="form-control" id="email">
 								</div>
-								<div class="row control-group">
-									<div class="col-lg-12">
-										<label>Phone:</label>
-										<input type="text" class="form-control" id="phone">
-									</div>
+							</div>
+							<div class="row control-group">
+								<div class="col-lg-12">
+									<label>Phone:</label>
+									<input type="text" class="form-control" id="phone">
 								</div>
-								<div class="row control-group">
-									<div class="col-lg-12">
-										<label>Address:</label>
-										<input type="text" class="form-control" id="address">
-									</div>
+							</div>
+							<div class="row control-group">
+								<div class="col-lg-12">
+									<label>Address:</label>
+									<input type="text" class="form-control" id="address">
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-lg-4">
+						<label>Photo:</label>
+						<input type="file">	
 
-						<div class="col-lg-4">
-							<label>Photo:</label>
-							<input type="file">	
-
-							<div id="yourimage">
-							</div>				
-						</div>
+						<div id="yourimage">
+						</div>				
 					</div>
 				</div>
 			</section>
@@ -145,8 +142,31 @@
 				</div>
 			</section>
 		</div>
-		<div id="preview-mode" class="default">
-			<h1>To jest preview mode</h1>
+		<div id="preview-mode">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-lg-offset-4">
+						<h1>Personal Data</h1>
+					</div>
+				</div>
+
+				<div class="container">
+				<div class="row">
+					<div class="col-lg-4 text-right">
+						<span>Name:</span><br>
+						<span>Email:</span><br>
+						<span>Phone:</span><br>
+						<span>Address:</span><br>
+					</div>
+					<div class="col-lg-8">
+						<span id="preview-name">21</span><br>
+						<span id="preview-email"></span><br>
+						<span id="preview-phone">21</span><br>
+						<span id="preview-address">21</span><br>
+					</div>
+				</div>
+			</div>
+			</div>
 		</div>
 	</div>
 
