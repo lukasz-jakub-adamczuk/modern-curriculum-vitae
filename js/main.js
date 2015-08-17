@@ -74,7 +74,7 @@ Group.prototype.render = function() {
 
 utils = new Utils();
 
-PersonalData = new Group();
+// PersonalData = new Group();
 
 // PersonalData.setName('PersonalData');
 
@@ -115,12 +115,18 @@ var previewMode = function() {
 		$('#edit-mode').hide();
 	}
 };
+var showFormSection = function(element) {
+	var name = utils.slugify($(element).text());
+
+	$('#edit-mode section').hide();
+	$('#' + name).show();
+};
 var saveFormData = function() {
-	// PersonalData = new Group();
-
 	// personal data
-	var pd = $('#personal-data form :input');
+	var pd = $('#personal-data form :input'),
+		education = $('#education form :input');
 
+	PersonalData = new Group();
 	$.each(pd, function(idx, itm) {
 		PersonalData.addElement(
 			new Element(
@@ -130,25 +136,66 @@ var saveFormData = function() {
 		);
 		// console.log($(itm).val());
 	});
+
+	Education = new Group();
+	$.each(education, function(idx, itm) {
+		Education.addElement(
+			new Element(
+				$(itm).attr('name'),
+				$(itm).val()
+			)
+		);
+		// console.log($(itm).val());
+	});
+};
+
+var personalDataTransform = function(item) {
+	return {
+		label: item.label,
+		value: item.value
+	};
+};
+
+var educationTransform = function(obj) {
+	var item = {};
+
+	$.each(obj, function(idx, itm) {
+		item[utils.slugify(itm.label)] = itm.value;
+	});
+
+	return {
+		title: item.school,
+		subtitle: item.location,
+		label: item.from + ' - ' + item.to,
+		value: item.description
+	};
 };
 
 var renderFormData = function() {
+	var source   = $("#row-group-template").html();
+	var template = Handlebars.compile(source);
+
 	var items = PersonalData.elements,
 		html = '';
 	
 	$.each(items, function(idx, itm) {
-		html += '<div class="row">'
-			+'<div class="col-lg-4 text-right">'
-			+'	<span>' + itm.label + ':</span>'
-			+'</div>'
-			+'<div class="col-lg-8">'
-			+'	<span>' + itm.value + '</span>'
-			+'</div>'
-		+'</div>';
-		// console.log('items')
+		// personalDataTransform(itm)
+		html += template(itm);
 	});
 
-	$('#preview-mode .data').html(html);
+	$('#personal-data-preview').html(html);
+
+	items = Education.elements,
+	html = '';
+	
+	// $.each(items, function(idx, itm) {
+		// console.log(items);
+		// console.log();
+		// educationTransform(items)
+		html += template(educationTransform(items));
+	// });
+
+	$('#education-preview').html(html);
 };
 
 var copyForm = function(button, selector) {
@@ -180,10 +227,20 @@ $(document).ready(function() {
 		renderFormData();
 	});
 
+	$('.nav-pills li a').click(function() {
+		showFormSection(this);
+	});
+
 	// education
 	$('#education .editor button').click(function() {
 		copyForm(this, '#education form');
 	});
+
+
+	// temporary start
+	startMode();
+	editMode();
+	// previewMode();
 });
 
 

@@ -56,32 +56,32 @@
 						<form class="form" role="form">
 							<div class="row form-group">
 								<div class="col-lg-12">
-									<label>Name:</label>
-									<input type="text" class="form-control" name="name">
+									<label>Name</label>
+									<input type="text" class="form-control" name="name" value="John Doe">
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-lg-12">
-									<label>Email:</label>
-									<input type="text" class="form-control" name="email">
+									<label>Email</label>
+									<input type="text" class="form-control" name="email" value="john.doe@email.pl">
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-lg-12">
-									<label>Phone:</label>
-									<input type="text" class="form-control" name="phone">
+									<label>Phone</label>
+									<input type="text" class="form-control" name="phone" value="+1 500 123 456">
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-lg-12">
-									<label>Address:</label>
-									<input type="text" class="form-control" name="address">
+									<label>Address</label>
+									<input type="text" class="form-control" name="address" value="My Address 99, 12-345 City">
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="col-lg-4">
-						<label>Photo:</label>
+						<label>Photo</label>
 						<input type="file">	
 
 						<div id="yourimage">
@@ -96,20 +96,24 @@
 						<h2>Education</h2>
 						<form class="form">
 							<div class="form-group">
-								<label>Collage name:</label>
-								<input type="text" class="form-control" name="collage-name">
+								<label>College or University</label>
+								<input type="text" class="form-control" name="school" value="My Super Ninja School">
 							</div>
 							<div class="form-group">
-								<label>From:</label>
-								<input type="text" class="form-control" name="from">
+								<label>Location</label>
+								<input type="text" class="form-control" name="location" value="California, United States">
 							</div>
 							<div class="form-group">
-								<label>To:</label>
-								<input type="text" class="form-control" name="to">
+								<label>From</label>
+								<input type="text" class="form-control" name="from" value="Oct 1999">
 							</div>
 							<div class="form-group">
-								<label>Description:</label>
-								<textarea class="form-control" rows="3" name="description"></textarea>
+								<label>To</label>
+								<input type="text" class="form-control" name="to" value="Jun 2003">
+							</div>
+							<div class="form-group">
+								<label>Description</label>
+								<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
 							</div>
 						</form>
 						<div class="editor">
@@ -124,14 +128,14 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
-							<h2>Experiance</h2>
+							<h2>Experience</h2>
 							<form class="form">
 								<div class="form-group">
-									<label>Company name:</label>
+									<label>Company name</label>
 									<input type="text" class="form-control" id="companyname">
 								</div>
 								<div class="form-group">
-									<label>Responsibility:</label>
+									<label>Responsibility</label>
 									<textarea class="form-control" rows="3"></textarea>
 								</div>
 							</form>
@@ -151,7 +155,7 @@
 							<h2>Skills</h2>
 							<form class="form">
 								<div class="form-group">
-									<label>Skills:</label>
+									<label>Skills</label>
 									<input type="text" class="form-control" id="skills">
 								</div>
 							</form>
@@ -181,28 +185,17 @@
 		<div id="preview-mode" style="display: none;">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12 col-lg-offset-4">
+					<div class="col-md-12 col-md-offset-4">
 						<h1>Personal Data</h1>
 					</div>
 				</div>
-				<div class="data"></div>
-
-				<div class="container">
+				<div id="personal-data-preview" class="data"></div>
 				<div class="row">
-					<div class="col-lg-4 text-right">
-						<span>Name:</span><br>
-						<span>Email:</span><br>
-						<span>Phone:</span><br>
-						<span>Address:</span><br>
-					</div>
-					<div class="col-lg-8">
-						<span id="preview-name">21</span><br>
-						<span id="preview-email"></span><br>
-						<span id="preview-phone">21</span><br>
-						<span id="preview-address">21</span><br>
+					<div class="col-md-12 col-md-offset-4">
+						<h1>Education</h1>
 					</div>
 				</div>
-			</div>
+				<div id="education-preview" class="data"></div>
 			</div>
 		</div>
 	</div>
@@ -213,12 +206,19 @@
 	<script type="text/javascript" src="bower_components/require/build/require.min.js"></script>
 
 	<!-- templates -->
-	<script id="form-group-template" type="text/x-handlebars-template">
-		<div class="form-group">
-			<label for="group-name">
-			<input id="group-name" name="group-name" type="text" value="{{group.name}}" />
-			<div class="body">
-				{{group.description}}
+	<script id="row-group-template" type="text/x-handlebars-template">
+		<div class="row">
+			<div class="col-md-12 col-md-offset-4">
+				{{#if title}}<h2>{{title}}</h2>{{/if}}
+				{{#if subtitle}}<h3>{{subtitle}}</h3>{{/if}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 text-right">
+				<span>{{label}}</span>
+			</div>
+			<div class="col-md-4">
+				{{value}}
 			</div>
 		</div>
 	</script>
