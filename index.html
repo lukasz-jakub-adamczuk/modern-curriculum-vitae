@@ -50,49 +50,49 @@
 					<li><a href="#">Interests<br>and<br>Activities</a></li>
 				</ul>
 			</nav>
-			<section id="personal-data">
+			<section id="personaldata">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-md-12">
+						<h2>Personal Data</h2>
 						<form class="form" role="form">
 							<div class="row form-group">
-								<div class="col-lg-12">
+								<div class="col-md-12">
 									<label>Name</label>
 									<input type="text" class="form-control" name="name" value="John Doe">
 								</div>
 							</div>
+						</form>
+						<form class="form" role="form">
 							<div class="row form-group">
-								<div class="col-lg-12">
+								<div class="col-md-12">
 									<label>Email</label>
 									<input type="text" class="form-control" name="email" value="john.doe@email.pl">
 								</div>
 							</div>
+						</form>
+						<form class="form" role="form">
 							<div class="row form-group">
-								<div class="col-lg-12">
+								<div class="col-md-12">
 									<label>Phone</label>
 									<input type="text" class="form-control" name="phone" value="+1 500 123 456">
 								</div>
 							</div>
+						</form>
+						<form class="form" role="form">
 							<div class="row form-group">
-								<div class="col-lg-12">
+								<div class="col-md-12">
 									<label>Address</label>
 									<input type="text" class="form-control" name="address" value="My Address 99, 12-345 City">
 								</div>
 							</div>
 						</form>
 					</div>
-					<div class="col-lg-4">
-						<label>Photo</label>
-						<input type="file">	
-
-						<div id="yourimage">
-						</div>				
-					</div>
 				</div>
 			</section>
 			
 			<section id="education" style="display: none;">
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-md-12">
 						<h2>Education</h2>
 						<form class="form">
 							<div class="form-group">
@@ -127,7 +127,7 @@
 			<section id="experience" style="display: none;">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-md-12">
 							<h2>Experience</h2>
 							<form class="form">
 								<div class="form-group">
@@ -151,7 +151,7 @@
 			<section id="skills" style="display: none;">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-md-12">
 							<h2>Skills</h2>
 							<form class="form">
 								<div class="form-group">
@@ -175,7 +175,7 @@
 			<section id="footer" style="display: none;">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-md-12">
 							<p class="text-center">Copyright &copy; 2015</p>
 						</div>
 					</div>
@@ -215,10 +215,10 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4 text-right">
-				<span>{{label}}</span>
+				<span class="key">{{label}}</span>
 			</div>
 			<div class="col-md-4">
-				{{value}}
+				<span class="value">{{value}}</span>
 			</div>
 		</div>
 	</script>

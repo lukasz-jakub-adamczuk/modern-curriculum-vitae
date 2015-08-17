@@ -6,45 +6,22 @@ body {
 .container + .container {
 	background: #abc;
 }
-
-header {
-	background-color: #35b6ce;
-	padding: 20px 0px 20px;
-	color: #fff;
+section form {
+	padding: 1em;
+	border-bottom: 1px solid #ccc;
+}
+section form:nth-child(even) {
+	background: #ace;
+}
+.editor {
+	margin-top: 1em;
 }
 
-#yourimage {
-	background-color: #cbcbcb;
-	height: 185px;
-}
 
-#education {
-	background-color: #fff;
-	padding: 20px 0px 20px;
-	color: #6a6a6a;
-	/*visibility: hidden;*/
+#preview-mode h1 {
+	color: maroon;
 }
-
-#experiance {
-	background-color: #35b6ce;
-	padding: 20px 0px 20px;
-	color: #fff;
-	visibility: hidden;
-}
-
-#skills {
-	background-color: #fff;
-	padding: 20px 0px 20px;
-	color: #6a6a6a;
-	visibility: hidden;
-}
-
-#footer {
-	background-color: #35b6ce;
-	color: #fff;
-	visibility: hidden;
-}
-
-#footer p {
-	margin: 5px 0px 5px;
+#preview-mode .key {
+	font-family: Georgia, serif;
+	font-style: italic;
 }

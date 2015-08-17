@@ -4,33 +4,34 @@ console.log('All magic begins here...');
 
 // mvc 
 
-function Utils() {
-
+var Utilities = {
+	slugify: function(text) {
+		return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+	}
 }
 
-Utils.prototype.slugify = function(text) {
-	// this.text = text;
-	return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
-};
 
-
-function Element(label, value) {
+function Tuple(label, value) {
 	this.label = label;
 	this.value = value;
 }
 
-// not need
-Element.prototype.create = function(label, value) {
-	this.label = label;
-	this.value = value;
-};
-
-Element.prototype.getLabel = function() {
+Tuple.prototype.getLabel = function() {
 	return this.label;
 };
 
-Element.prototype.getValue = function() {
+Tuple.prototype.getValue = function() {
 	return this.value;
+};
+
+
+function Element() {
+	// elements
+	this.tuples = [];
+}
+
+Element.prototype.addTuple = function(tuple) {
+	this.tuples.push(tuple);
 };
 
 
@@ -49,7 +50,7 @@ Group.prototype.setName = function(name) {
 	// name
 	this.name = name;
 	// key
-	this.key = utils.slugify(name);
+	this.key = Utilities.slugify(name);
 };
 
 Group.prototype.addElement = function(element) {
@@ -71,24 +72,36 @@ Group.prototype.render = function() {
 };
 
 
+var Transformer = {
+	personalSection: function(element) {
+		var item = {};
+		// console.log(element);
 
-utils = new Utils();
+		$.each(element.tuples, function(idx, itm) {
+			item = itm;
+		});
+		// console.log(item);		
+		return {
+			label: item.label,
+			value: item.value
+		};
+	},
+	educationSection: function(element) {
+		var item = {};
 
-// PersonalData = new Group();
+		$.each(element.tuples, function(idx, itm) {
+			// item[Utilities.slugify(itm.label)] = itm.value;
+			item[itm.label] = itm.value;
+		});
+		return {
+			title: item.school,
+			subtitle: item.location,
+			label: item.from + ' - ' + item.to,
+			value: item.description
+		};
+	}
+};
 
-// PersonalData.setName('PersonalData');
-
-// Address = new Element('Address', 'al. I. Daszynskiego 28/18, 31-534 Krakow');
-// Mobile = new Element('Mobile', '+48 509 271 306');
-// Email = new Element('Email', 'lukasz.jakub.adamczuk@gmail.com');
-// Website = new Element('Website', 'adamczuk.net.pl');
-// Birthdate = new Element('Birthdate', 'February 10, 1983');
-
-// PersonalData.addElement(Address);
-// PersonalData.addElement(Mobile);
-// PersonalData.addElement(Email);
-// PersonalData.addElement(Website);
-// PersonalData.addElement(Birthdate);
 
 
 var startMode = function() {
@@ -116,59 +129,55 @@ var previewMode = function() {
 	}
 };
 var showFormSection = function(element) {
-	var name = utils.slugify($(element).text());
+	var name = Utilities.slugify($(element).text());
+
+	console.log($(element).text());
 
 	$('#edit-mode section').hide();
 	$('#' + name).show();
 };
-var saveFormData = function() {
+var processFormData = function() {
 	// personal data
-	var pd = $('#personal-data form :input'),
-		education = $('#education form :input');
+	var pd = $('#personaldata form'),
+		education = $('#education form');
+
+	// groups = [
+	// 	$('#personaldata form'),
+	// 	$('#education form')
+	// ];
 
 	PersonalData = new Group();
 	$.each(pd, function(idx, itm) {
-		PersonalData.addElement(
-			new Element(
-				$(itm).prev().text(),
-				$(itm).val()
-			)
-		);
-		// console.log($(itm).val());
+		var forms = $(itm).find(':input');
+
+		element = new Element();
+		$.each(forms, function(i, input) {
+			element.addTuple(
+				new Tuple(
+					$(input).prev().text(),
+					$(input).val()
+				)
+			);
+		});
+		PersonalData.addElement(element);
 	});
+	
 
 	Education = new Group();
 	$.each(education, function(idx, itm) {
-		Education.addElement(
-			new Element(
-				$(itm).attr('name'),
-				$(itm).val()
-			)
-		);
-		// console.log($(itm).val());
+		var forms = $(itm).find(':input');
+
+		element = new Element();
+		$.each(forms, function(i, input) {
+			element.addTuple(
+				new Tuple(
+					$(input).attr('name'),
+					$(input).val()
+				)
+			);
+		});
+		Education.addElement(element);
 	});
-};
-
-var personalDataTransform = function(item) {
-	return {
-		label: item.label,
-		value: item.value
-	};
-};
-
-var educationTransform = function(obj) {
-	var item = {};
-
-	$.each(obj, function(idx, itm) {
-		item[utils.slugify(itm.label)] = itm.value;
-	});
-
-	return {
-		title: item.school,
-		subtitle: item.location,
-		label: item.from + ' - ' + item.to,
-		value: item.description
-	};
 };
 
 var renderFormData = function() {
@@ -177,10 +186,13 @@ var renderFormData = function() {
 
 	var items = PersonalData.elements,
 		html = '';
+
+		// console.log(items);
 	
-	$.each(items, function(idx, itm) {
+	$.each(PersonalData.elements, function(idx, itm) {
 		// personalDataTransform(itm)
-		html += template(itm);
+		html += template(Transformer.personalSection(itm));
+		// html += template(personalDataTransform(itm));
 	});
 
 	$('#personal-data-preview').html(html);
@@ -188,12 +200,12 @@ var renderFormData = function() {
 	items = Education.elements,
 	html = '';
 	
-	// $.each(items, function(idx, itm) {
-		// console.log(items);
-		// console.log();
-		// educationTransform(items)
-		html += template(educationTransform(items));
-	// });
+	$.each(Education.elements, function(idx, itm) {
+		// console.log(itm);
+		// console.log(Transformer.educationSection(itm));
+		html += template(Transformer.educationSection(itm));
+
+	});
 
 	$('#education-preview').html(html);
 };
@@ -201,7 +213,10 @@ var renderFormData = function() {
 var copyForm = function(button, selector) {
 	$(button).parent().before(
 		$(selector).clone()
-	);
+	)
+	// $(button).closest('form:last-child').find(':input').each(function(idx, itm) {
+	// 	$(this).val('');
+	// });
 };
 
 
@@ -223,7 +238,7 @@ $(document).ready(function() {
 
 	$('#preview-mode-tgr').click(function() {
 		previewMode();
-		saveFormData();
+		processFormData();
 		renderFormData();
 	});
 
@@ -233,7 +248,7 @@ $(document).ready(function() {
 
 	// education
 	$('#education .editor button').click(function() {
-		copyForm(this, '#education form');
+		copyForm(this, '#education form:first');
 	});
 
 
@@ -241,6 +256,12 @@ $(document).ready(function() {
 	startMode();
 	editMode();
 	// previewMode();
+
+	$('#education .editor button').click();
+
+	// setTimeout(function() {
+		previewMode();
+	// }, 4000);
 });
 
 
