@@ -8,10 +8,11 @@ body {
 }
 section form {
 	padding: 1em;
+	margin-bottom: 1em;
 	border-bottom: 1px solid #ccc;
 }
 section form:nth-child(even) {
-	background: #ace;
+	/*background: #ace;*/
 }
 .editor {
 	margin-top: 1em;

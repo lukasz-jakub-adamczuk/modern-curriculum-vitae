@@ -55,36 +55,32 @@
 					<div class="col-md-12">
 						<h2>Personal Data</h2>
 						<form class="form" role="form">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label>Name</label>
-									<input type="text" class="form-control" name="name" value="John Doe">
+							<fieldset>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label>Name</label>
+										<input type="text" class="form-control" name="name" value="John Doe">
+									</div>
 								</div>
-							</div>
-						</form>
-						<form class="form" role="form">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label>Email</label>
-									<input type="text" class="form-control" name="email" value="john.doe@email.pl">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label>Email</label>
+										<input type="text" class="form-control" name="email" value="john.doe@email.pl">
+									</div>
 								</div>
-							</div>
-						</form>
-						<form class="form" role="form">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label>Phone</label>
-									<input type="text" class="form-control" name="phone" value="+1 500 123 456">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label>Phone</label>
+										<input type="text" class="form-control" name="phone" value="+1 500 123 456">
+									</div>
 								</div>
-							</div>
-						</form>
-						<form class="form" role="form">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label>Address</label>
-									<input type="text" class="form-control" name="address" value="My Address 99, 12-345 City">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label>Address</label>
+										<input type="text" class="form-control" name="address" value="My Address 99, 12-345 City">
+									</div>
 								</div>
-							</div>
+							</fieldset>
 						</form>
 					</div>
 				</div>
@@ -95,26 +91,28 @@
 					<div class="col-md-12">
 						<h2>Education</h2>
 						<form class="form">
-							<div class="form-group">
-								<label>College or University</label>
-								<input type="text" class="form-control" name="school" value="My Super Ninja School">
-							</div>
-							<div class="form-group">
-								<label>Location</label>
-								<input type="text" class="form-control" name="location" value="California, United States">
-							</div>
-							<div class="form-group">
-								<label>From</label>
-								<input type="text" class="form-control" name="from" value="Oct 1999">
-							</div>
-							<div class="form-group">
-								<label>To</label>
-								<input type="text" class="form-control" name="to" value="Jun 2003">
-							</div>
-							<div class="form-group">
-								<label>Description</label>
-								<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
-							</div>
+							<fieldset>
+								<div class="form-group">
+									<label>College or University</label>
+									<input type="text" class="form-control" name="school" value="My Super Ninja School">
+								</div>
+								<div class="form-group">
+									<label>Location</label>
+									<input type="text" class="form-control" name="location" value="California, United States">
+								</div>
+								<div class="form-group">
+									<label>From</label>
+									<input type="text" class="form-control" name="from" value="Oct 1999">
+								</div>
+								<div class="form-group">
+									<label>To</label>
+									<input type="text" class="form-control" name="to" value="Jun 2003">
+								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
+								</div>
+							</fieldset>
 						</form>
 						<div class="editor">
 							<button class="btn btn-primary btn-sm" href="new" role="button">Add new collage</button>
@@ -124,50 +122,66 @@
 				</div>
 			</section>
 
-			<section id="experience" style="display: none;">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>Experience</h2>
-							<form class="form">
+			<section id="workexperience" style="display: none;">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Experience</h2>
+						<form class="form">
+							<fieldset>
 								<div class="form-group">
 									<label>Company name</label>
-									<input type="text" class="form-control" id="companyname">
+									<input type="text" class="form-control" name="company" value="Super Nice Company">
 								</div>
 								<div class="form-group">
-									<label>Responsibility</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<label>From</label>
+									<input type="text" class="form-control" name="from" value="Jan 2005">
 								</div>
-							</form>
-							<div class="editor">
-								<a class="btn btn-primary btn-sm" href="new" role="button">Add new company</a>
-								<a class="btn btn-success btn-sm" href="new" role="button">Save</a>
-							</div>
+								<div class="form-group">
+									<label>To</label>
+									<input type="text" class="form-control" name="to" value="Dec 2008">
+								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
+								</div>
+							</fieldset>
+						</form>
+						<div class="editor">
+							<button class="btn btn-primary btn-sm" href="new" role="button">Add new company</button>
+							<!-- <button class="btn btn-success btn-sm" href="new" role="button">Save</button> -->
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="skills" style="display: none;">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>Skills</h2>
-							<form class="form">
+			<section id="projects" style="display: none;">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Projects</h2>
+						<form class="form">
+							<fieldset>
 								<div class="form-group">
-									<label>Skills</label>
-									<input type="text" class="form-control" id="skills">
+									<label>Company name</label>
+									<input type="text" class="form-control" name="company" value="Super Nice Company">
 								</div>
-							</form>
-							<div class="editor">
-								<a class="btn btn-primary btn-sm" href="new" role="button">Add skill/skills</a>
-							</div>
-							<div id="addedskills">
-								<span class="label label-default">Skill</span>
-								<span class="label label-default">Skill</span>
-								<span class="label label-default">Skill</span>
-								<span class="label label-default">Skill</span>
-							</div>
+								<div class="form-group">
+									<label>From</label>
+									<input type="text" class="form-control" name="from" value="Jan 2005">
+								</div>
+								<div class="form-group">
+									<label>To</label>
+									<input type="text" class="form-control" name="to" value="Dec 2008">
+								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
+								</div>
+							</fieldset>
+						</form>
+						<div class="editor">
+							<button class="btn btn-primary btn-sm" href="new" role="button">Add new project</button>
+							<!-- <button class="btn btn-success btn-sm" href="new" role="button">Save</button> -->
+						</div>
 					</div>
 				</div>
 			</section>
