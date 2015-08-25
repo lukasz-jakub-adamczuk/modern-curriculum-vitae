@@ -20,7 +20,13 @@ section form:nth-child(even) {
 
 
 #preview-mode h1 {
+	color: black;
+}
+#preview-mode h2 {
+	font-family: 'Lato';
 	color: maroon;
+	border-bottom: 1px solid;
+	text-transform: capitalize;
 }
 #preview-mode .key {
 	font-family: Georgia, serif;

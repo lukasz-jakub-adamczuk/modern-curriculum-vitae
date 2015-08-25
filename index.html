@@ -5,7 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" media="all" href="css/base.css">
+
+	<!-- temporary to test pdf printing -->
+	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>	
@@ -312,9 +315,9 @@
 	<!-- templates -->
 	<script id="row-group-template" type="text/x-handlebars-template">
 		<div class="row">
-			<div class="col-md-12 col-md-offset-4">
-				{{#if title}}<h2>{{title}}</h2>{{/if}}
-				{{#if subtitle}}<h3>{{subtitle}}</h3>{{/if}}
+			<div class="col-md-8 col-md-offset-4">
+				{{#if title}}<h3>{{title}}</h3>{{/if}}
+				{{#if subtitle}}<h4>{{subtitle}}</h4>{{/if}}
 			</div>
 		</div>
 		<div class="row">
@@ -328,11 +331,11 @@
 	</script>
 	<script id="group-header-preview-template" type="text/x-handlebars-template">
 		<div class="row">
-			<div class="col-md-12 col-md-offset-4">
-				<h1>{{name}}</h1>
+			<div class="col-md-8 col-md-offset-4">
+				<h2>{{name}}</h2>
 			</div>
 		</div>
-		<div id="{{key}}-preview" class="data"></div>
+		<!-- <div id="{{key}}-preview" class="data"></div> -->
 	</script>
 	 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>      -->

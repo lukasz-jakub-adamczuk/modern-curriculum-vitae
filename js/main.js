@@ -7,6 +7,11 @@ console.log('All magic begins here...');
 var Utilities = {
 	slugify: function(text) {
 		return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+	},
+	toCamelCase: function(text) {
+		return text.replace(/^.|-./g, function(letter, index) {
+			return index == 0 ? letter.toLowerCase() : letter.substr(1).toUpperCase();
+		});
 	}
 }
 
@@ -57,6 +62,10 @@ Group.prototype.getName = function() {
 	return this.name;
 };
 
+Group.prototype.getKey = function() {
+	return this.key;
+};
+
 Group.prototype.addElement = function(element) {
 	this.elements.push(element);
 };
@@ -76,32 +85,86 @@ Group.prototype.render = function() {
 };
 
 
+var aya = aya || {};
+
+aya.framework = function(element) {
+
+	// private property
+	var item;
+	 // = '0.0.2';
+
+	var initialize = function(element) {
+		$.each(element.tuples, function(idx, itm) {
+			item[itm.label] = itm.value;
+		});
+		// return item;
+	}
+
+	// all returned is a public
+	return {
+		personalTransform: function(item) {
+			return {
+				label: item.label,
+				value: item.value
+			};
+		},
+		educationTransform: function(item) {
+			return {
+				title: item.school,
+				subtitle: item.location,
+				label: item.from + ' - ' + item.to,
+				value: item.description
+			};
+		},
+		default: function(item) {
+			return {
+				label: item.label,
+				value: item.value
+			};
+		}
+	}
+};
+
+
 var Transformer = {
-	personalSection: function(element) {
-		var item = {};
-		// console.log(element);
+	initialize: function(element) {
+		item = {};
 
 		$.each(element.tuples, function(idx, itm) {
-			item = itm;
+			item[itm.label] = itm.value;
 		});
-		// console.log(item);		
+		return item;
+	},
+	// this is for next step
+	// to execute as Transformer.change(method);
+	change: function(method) {
+		return (typeof Transformer[method] == 'function') ? Transformer[method](item) : Transformer.defaultTransform(item);
+	},
+
+	personalDataTransform: function(item) {
 		return {
 			label: item.label,
 			value: item.value
 		};
 	},
-	educationSection: function(element) {
-		var item = {};
-
-		$.each(element.tuples, function(idx, itm) {
-			// item[Utilities.slugify(itm.label)] = itm.value;
-			item[itm.label] = itm.value;
-		});
+	educationTransform: function(item) {
 		return {
 			title: item.school,
 			subtitle: item.location,
 			label: item.from + ' - ' + item.to,
 			value: item.description
+		};
+	},
+	skillsTransform: function(item) {
+		return {
+			label: item.group,
+			value: item.skills
+		};
+	},
+	defaultTransform: function(item) {
+		return {
+			label: item.label,
+			value: item.value
 		};
 	}
 };
@@ -142,15 +205,15 @@ var showFormSection = function(element) {
 };
 var processFormData = function() {
 	// personal data
-	var pd = $('#personaldata form'),
-		education = $('#education form');
+	// var pd = $('#personaldata form'),
+		// education = $('#education form');
 
 
 	var sections = $('section');
 
 	groups = [];
 
-	console.log(sections.length);
+	// console.log(sections.length);
 
 	$.each(sections, function(sec, section) {
 		// console.log(section);
@@ -176,7 +239,7 @@ var processFormData = function() {
 		});
 		groups.push(group);
 	});
-
+/*
 	console.log(groups);
 
 	PersonalData = new Group();
@@ -210,7 +273,7 @@ var processFormData = function() {
 			);
 		});
 		Education.addElement(element);
-	});
+	});*/
 };
 
 var renderFormData = function() {
@@ -219,8 +282,7 @@ var renderFormData = function() {
 	var source   = $("#row-group-template").html();
 	var template = Handlebars.compile(source);
 
-	var items = PersonalData.elements,
-		html = '';
+	var html = '';
 
 		// console.log(items);
 
@@ -228,13 +290,32 @@ var renderFormData = function() {
 	$.each(groups, function(i, group) {
 		var elements = group.elements;
 
-		console.log(group);
+		// console.log(group);
 
 		html += header({name: group.getName()});
 
 		$.each(elements, function(idx, itm) {
 			// personalDataTransform(itm)
-			html += template(Transformer.personalSection(itm));
+			// console.log(group.getKey());
+
+			// aya.framework(itm);
+
+			var transform = Utilities.toCamelCase(Utilities.slugify(group.getName())) + 'Transform';
+			var object;
+
+			object = Transformer.initialize(itm);
+
+			console.log(transform);
+
+			// var object = (typeof Transformer[group.getKey()] == 'function') ? Transformer[group.getKey()](itm) : Transformer.default(itm);
+			object = (typeof Transformer[transform] == 'function') ? Transformer[transform](object) : Transformer.defaultTransform(object);
+
+			console.log(Transformer.change(transform));
+
+			// console.log(Transformer.transformations[group.getKey()] );
+			// console.log(Transformer.educationSection(itm))
+			// html += template(transform(itm));
+			html += template(object);
 			// html += template(personalDataTransform(itm));
 		});
 	});
@@ -315,21 +396,9 @@ $(document).ready(function() {
 	$('#education .editor button').click();
 
 	// setTimeout(function() {
-		previewMode();
+		// previewMode();
 	// }, 4000);
 });
 
 
 
-
-compileTemplate = function() {
-	setTimeout(function() {
-		var source   = $("#form-group-template").html();
-		var template = Handlebars.compile(source);
-
-		var group   = {name: "My New Post", description: "This is my first post!"};
-		var html    = template(group);
-
-		$('#editor').append(html);
-	}, 3000);
-};
