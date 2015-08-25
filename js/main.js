@@ -84,48 +84,6 @@ Group.prototype.render = function() {
 	// for (var i = 0, len = )
 };
 
-
-var aya = aya || {};
-
-aya.framework = function(element) {
-
-	// private property
-	var item;
-	 // = '0.0.2';
-
-	var initialize = function(element) {
-		$.each(element.tuples, function(idx, itm) {
-			item[itm.label] = itm.value;
-		});
-		// return item;
-	}
-
-	// all returned is a public
-	return {
-		personalTransform: function(item) {
-			return {
-				label: item.label,
-				value: item.value
-			};
-		},
-		educationTransform: function(item) {
-			return {
-				title: item.school,
-				subtitle: item.location,
-				label: item.from + ' - ' + item.to,
-				value: item.description
-			};
-		},
-		default: function(item) {
-			return {
-				label: item.label,
-				value: item.value
-			};
-		}
-	}
-};
-
-
 var Transformer = {
 	initialize: function(element) {
 		item = {};
@@ -155,10 +113,45 @@ var Transformer = {
 			value: item.description
 		};
 	},
+	workExperienceTransform: function(item) {
+		return {
+			title: item.company,
+			// subtitle: item.location,
+			label: item.from + ' - ' + item.to,
+			value: item.description
+		};
+	},
+	projectsTransform: function(item) {
+		return {
+			title: item.company,
+			// subtitle: item.location,
+			label: item.from + ' - ' + item.to,
+			value: item.description
+		};
+	},
 	skillsTransform: function(item) {
 		return {
 			label: item.group,
 			value: item.skills
+		};
+	},
+	achievementsAndAwardsTransform: function(item) {
+		return {
+			// title: item.company,
+			// subtitle: item.location,
+			label: item.when,
+			value: item.description
+		};
+	},
+	languagesTransform: function(item) {
+		return {
+			label: item.language,
+			value: item.level
+		};
+	},
+	interestsAndActivitiesTransform: function(item) {
+		return {
+			value: item.value
 		};
 	},
 	defaultTransform: function(item) {
@@ -196,18 +189,17 @@ var previewMode = function() {
 	}
 };
 var showFormSection = function(element) {
-	var name = Utilities.slugify($(element).text());
+	var name = Utilities.slugify($(element).html().split('<br>').join(' '));
 
-	console.log($(element).text());
+	console.log($(element).html().replace('<br>', ' '));
+	// console.log(Utilities.toCamelCase(Utilities.slugify(group.getName())));
+
+	console.log(name);
 
 	$('#edit-mode section').hide();
 	$('#' + name).show();
 };
 var processFormData = function() {
-	// personal data
-	// var pd = $('#personaldata form'),
-		// education = $('#education form');
-
 
 	var sections = $('section');
 
@@ -228,12 +220,23 @@ var processFormData = function() {
 				element = new Element();
 
 			$.each(fields, function(i, input) {
-				element.addTuple(
-					new Tuple(
-						$(input).attr('name'),
-						$(input).val()
-					)
-				);
+				// console.log(group.getName());
+				// have to be checked :(
+				if (group.getName() == 'Personal Data') {
+					element.addTuple(
+						new Tuple(
+							$(input).prev().text(),
+							$(input).val()
+						)
+					);
+				} else {
+					element.addTuple(
+						new Tuple(
+							$(input).attr('name'),
+							$(input).val()
+						)
+					);
+				}
 			});
 			group.addElement(element);
 		});
