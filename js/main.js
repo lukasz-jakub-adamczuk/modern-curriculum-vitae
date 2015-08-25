@@ -53,6 +53,10 @@ Group.prototype.setName = function(name) {
 	this.key = Utilities.slugify(name);
 };
 
+Group.prototype.getName = function() {
+	return this.name;
+};
+
 Group.prototype.addElement = function(element) {
 	this.elements.push(element);
 };
@@ -141,10 +145,39 @@ var processFormData = function() {
 	var pd = $('#personaldata form'),
 		education = $('#education form');
 
-	// groups = [
-	// 	$('#personaldata form'),
-	// 	$('#education form')
-	// ];
+
+	var sections = $('section');
+
+	groups = [];
+
+	console.log(sections.length);
+
+	$.each(sections, function(sec, section) {
+		// console.log(section);
+		var forms = $(section).find('form'),
+			group = new Group();
+
+		group.setName($(section).find('h2').text());
+		// console.log($(section).children('form'));
+
+		$.each(forms, function(idx, itm) {
+			var fields = $(itm).find(':input'),
+				element = new Element();
+
+			$.each(fields, function(i, input) {
+				element.addTuple(
+					new Tuple(
+						$(input).attr('name'),
+						$(input).val()
+					)
+				);
+			});
+			group.addElement(element);
+		});
+		groups.push(group);
+	});
+
+	console.log(groups);
 
 	PersonalData = new Group();
 	$.each(pd, function(idx, itm) {
@@ -181,6 +214,8 @@ var processFormData = function() {
 };
 
 var renderFormData = function() {
+	var header = Handlebars.compile($('#group-header-preview-template').html());
+
 	var source   = $("#row-group-template").html();
 	var template = Handlebars.compile(source);
 
@@ -188,6 +223,25 @@ var renderFormData = function() {
 		html = '';
 
 		// console.log(items);
+
+	// html = 
+	$.each(groups, function(i, group) {
+		var elements = group.elements;
+
+		console.log(group);
+
+		html += header({name: group.getName()});
+
+		$.each(elements, function(idx, itm) {
+			// personalDataTransform(itm)
+			html += template(Transformer.personalSection(itm));
+			// html += template(personalDataTransform(itm));
+		});
+	});
+
+	$('#preview-mode .container').html(html);
+
+	/*
 	
 	$.each(PersonalData.elements, function(idx, itm) {
 		// personalDataTransform(itm)
@@ -208,6 +262,7 @@ var renderFormData = function() {
 	});
 
 	$('#education-preview').html(html);
+	*/
 };
 
 var copyForm = function(button, selector) {
