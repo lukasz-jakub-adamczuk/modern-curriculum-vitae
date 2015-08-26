@@ -209,7 +209,7 @@ var processFormData = function() {
 
 	$.each(sections, function(sec, section) {
 		// console.log(section);
-		var forms = $(section).find('form'),
+		var forms = $(section).find('fieldset'),
 			group = new Group();
 
 		group.setName($(section).find('h2').text());
@@ -225,7 +225,13 @@ var processFormData = function() {
 				if (group.getName() == 'Personal Data') {
 					element.addTuple(
 						new Tuple(
-							$(input).prev().text(),
+							'label',
+							$(input).prev().text()
+						)
+					);
+					element.addTuple(
+						new Tuple(
+							'value',
 							$(input).val()
 						)
 					);
@@ -242,120 +248,43 @@ var processFormData = function() {
 		});
 		groups.push(group);
 	});
-/*
-	console.log(groups);
 
-	PersonalData = new Group();
-	$.each(pd, function(idx, itm) {
-		var forms = $(itm).find(':input');
-
-		element = new Element();
-		$.each(forms, function(i, input) {
-			element.addTuple(
-				new Tuple(
-					$(input).prev().text(),
-					$(input).val()
-				)
-			);
-		});
-		PersonalData.addElement(element);
-	});
-	
-
-	Education = new Group();
-	$.each(education, function(idx, itm) {
-		var forms = $(itm).find(':input');
-
-		element = new Element();
-		$.each(forms, function(i, input) {
-			element.addTuple(
-				new Tuple(
-					$(input).attr('name'),
-					$(input).val()
-				)
-			);
-		});
-		Education.addElement(element);
-	});*/
 };
 
 var renderFormData = function() {
-	var header = Handlebars.compile($('#group-header-preview-template').html());
+	var html, header, row;
 
-	var source   = $("#row-group-template").html();
-	var template = Handlebars.compile(source);
+	header = Handlebars.compile($('#group-header-preview-template').html()),
+	row = Handlebars.compile($("#row-group-template").html());
 
-	var html = '';
-
-		// console.log(items);
-
-	// html = 
 	$.each(groups, function(i, group) {
-		var elements = group.elements;
-
-		// console.log(group);
-
 		html += header({name: group.getName()});
 
-		$.each(elements, function(idx, itm) {
-			// personalDataTransform(itm)
-			// console.log(group.getKey());
-
-			// aya.framework(itm);
-
-			var transform = Utilities.toCamelCase(Utilities.slugify(group.getName())) + 'Transform';
-			var object;
+		$.each(group.elements, function(idx, itm) {
+			var object, transform;
+				
+			transform = Utilities.toCamelCase(Utilities.slugify(group.getName())) + 'Transform';
 
 			object = Transformer.initialize(itm);
-
-			console.log(transform);
-
-			// var object = (typeof Transformer[group.getKey()] == 'function') ? Transformer[group.getKey()](itm) : Transformer.default(itm);
 			object = (typeof Transformer[transform] == 'function') ? Transformer[transform](object) : Transformer.defaultTransform(object);
 
-			console.log(Transformer.change(transform));
-
-			// console.log(Transformer.transformations[group.getKey()] );
-			// console.log(Transformer.educationSection(itm))
-			// html += template(transform(itm));
-			html += template(object);
-			// html += template(personalDataTransform(itm));
+			// console.log(Transformer.change(transform));
+			html += row(object);
 		});
 	});
 
 	$('#preview-mode .container').html(html);
-
-	/*
-	
-	$.each(PersonalData.elements, function(idx, itm) {
-		// personalDataTransform(itm)
-		html += template(Transformer.personalSection(itm));
-		// html += template(personalDataTransform(itm));
-	});
-
-	$('#personal-data-preview').html(html);
-
-	items = Education.elements,
-	html = '';
-	
-	$.each(Education.elements, function(idx, itm) {
-		// console.log(itm);
-		// console.log(Transformer.educationSection(itm));
-		html += template(Transformer.educationSection(itm));
-
-	});
-
-	$('#education-preview').html(html);
-	*/
 };
 
 var copyForm = function(button, selector) {
 	$(button).parent().before(
 		$(selector).clone()
-	)
-	// $(button).closest('form:last-child').find(':input').each(function(idx, itm) {
-	// 	$(this).val('');
-	// });
+	);
+	console.log($(button).closest('fieldset'));
+	// clear
+	$(button).closest('fieldset:last-child').find(':input').each(function(idx, itm) {
+		$(itm).val('');
+	});
 };
 
 
@@ -386,8 +315,8 @@ $(document).ready(function() {
 	});
 
 	// education
-	$('#education .editor button').click(function() {
-		copyForm(this, '#education form:first');
+	$('section .editor button').click(function() {
+		copyForm(this, $(this).closest('section').find('fieldset:first'));
 	});
 
 
@@ -396,12 +325,11 @@ $(document).ready(function() {
 	editMode();
 	// previewMode();
 
-	$('#education .editor button').click();
-
-	// setTimeout(function() {
-		// previewMode();
-	// }, 4000);
+	// mocks
+	completeFormInputs();
 });
+
+
 
 
 
