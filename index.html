@@ -53,12 +53,52 @@
 					<li><a href="#">Interests<br>and<br>Activities</a></li>
 				</ul>
 			</nav>
-			<section id="personal-data">
+			<section id="personal-data" style="display: none;">
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Personal Data</h2>
 						<form class="form" role="form">
-							<fieldset>
+							<fieldset class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="label" value="Name" placeholder="Key">
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="value" value="John Doe" placeholder="Value">
+								</div>
+							</fieldset>
+							<fieldset class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="label" value="Address">
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="value" value="My Address 99, 12-345 City">
+								</div>
+							</fieldset>
+							<fieldset class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="label" value="Mobile">
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="value" value="+1 500 123 456">
+								</div>
+							</fieldset>
+							<fieldset class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="label" value="Email">
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="value" value="john.doe@email.com">
+								</div>
+							</fieldset>
+							<fieldset class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="label" value="Birthdate">
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="value" value="Jan 1, 1970">
+								</div>
+							</fieldset>
+							<!--<fieldset>
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label>Name</label>
@@ -70,7 +110,7 @@
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label>Email</label>
-										<input type="text" class="form-control" name="email" placeholder="john.doe@email.pl">
+										<input type="text" class="form-control" name="email" placeholder="john.doe@email.com">
 									</div>
 								</div>
 							</fieldset>
@@ -89,7 +129,7 @@
 										<input type="text" class="form-control" name="address" placeholder="My Address 99, 12-345 City">
 									</div>
 								</div>
-							</fieldset>
+							</fieldset>-->
 						</form>
 						<div class="editor">
 							<button class="btn btn-primary btn-sm" role="button">Add next detail</button>
@@ -156,7 +196,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Description</label>
+									<label>Description and/or responsibilities</label>
 									<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
 								</div>
 							</fieldset>
@@ -178,16 +218,18 @@
 									<label>Company name</label>
 									<input type="text" class="form-control" name="company" placeholder="Very Complex Project">
 								</div>
-								<div class="form-group">
-									<label>From</label>
-									<input type="text" class="form-control" name="from" placeholder="Aug 2015">
+								<div class="row">
+									<div class="col-md-6 form-group">
+										<label>From</label>
+										<input type="text" class="form-control" name="from" placeholder="Oct 1999">
+									</div>
+									<div class="col-md-6 form-group">
+										<label>To</label>
+										<input type="text" class="form-control" name="to" placeholder="Jun 2003">
+									</div>
 								</div>
 								<div class="form-group">
-									<label>To</label>
-									<input type="text" class="form-control" name="to" placeholder="Oct 2015">
-								</div>
-								<div class="form-group">
-									<label>Description</label>
+									<label>Description and/or responsibilities</label>
 									<textarea class="form-control" rows="3" name="description">Lorem ipsum dolor sit amet...</textarea>
 								</div>
 							</fieldset>
@@ -204,12 +246,12 @@
 					<div class="col-md-12">
 						<h2>Skills</h2>
 						<form class="form">
-							<fieldset>
-								<div class="form-group">
+							<fieldset class="row">
+								<div class="col-md-4 form-group">
 									<label>Group or type</label>
 									<input type="text" class="form-control" name="group" placeholder="Web development">
 								</div>
-								<div class="form-group">
+								<div class="col-md-8 form-group">
 									<label>Skills, abilities and technologies</label>
 									<input type="text" class="form-control" name="skills" placeholder="HTML5, CSS3, etc.">
 								</div>
@@ -227,12 +269,12 @@
 					<div class="col-md-12">
 						<h2>Achievements and Awards</h2>
 						<form class="form">
-							<fieldset>
-								<div class="form-group">
+							<fieldset class="row">
+								<div class="col-md-4 form-group">
 									<label>When happened</label>
 									<input type="text" class="form-control" name="when" placeholder="August 2015">
 								</div>
-								<div class="form-group">
+								<div class="col-md-8 form-group">
 									<label>Achievement or award</label>
 									<input type="text" class="form-control" name="description" placeholder="Creating elegant Curriculum Vitae application">
 								</div>
@@ -250,12 +292,12 @@
 					<div class="col-md-12">
 						<h2>Languages</h2>
 						<form class="form">
-							<fieldset>
-								<div class="form-group">
+							<fieldset class="row">
+								<div class="col-md-4 form-group">
 									<label>Language</label>
 									<input type="text" class="form-control" name="language" placeholder="English">
 								</div>
-								<div class="form-group">
+								<div class="col-md-8 form-group">
 									<label>Level</label>
 									<input type="text" class="form-control" name="level" placeholder="Professional, in speaking writing">
 								</div>
@@ -275,8 +317,21 @@
 						<form class="form">
 							<fieldset>
 								<div class="form-group">
-									<label>Level</label>
-									<input type="text" class="form-control" name="value" placeholder="Professional, in speaking writing">
+									<label>Size</label>
+									<select class="form-control" name="size">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Tag</label>
+									<input type="text" class="form-control" name="value" placeholder="describe you as ">
 								</div>
 							</fieldset>
 						</form>
@@ -322,7 +377,7 @@
 			<div class="col-md-4 text-right">
 				<span class="key">{{label}}</span>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-8">
 				<span class="value">{{value}}</span>
 			</div>
 		</div>

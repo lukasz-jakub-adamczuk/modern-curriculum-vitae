@@ -9,7 +9,12 @@ body {
 section form {
 	/*padding: 1em;*/
 	margin-bottom: 1em;
-	border-bottom: 1px solid #ccc;
+	/*border-bottom: 1px solid #ccc;*/
+}
+section fieldset {
+	/*padding: 1em;*/
+	margin-bottom: .5em;
+	/*border-bottom: 1px solid #ccc;*/
 }
 section form:nth-child(even) {
 	/*background: #ace;*/

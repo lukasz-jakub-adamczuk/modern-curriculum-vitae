@@ -191,10 +191,8 @@ var previewMode = function() {
 var showFormSection = function(element) {
 	var name = Utilities.slugify($(element).html().split('<br>').join(' '));
 
-	console.log($(element).html().replace('<br>', ' '));
-	// console.log(Utilities.toCamelCase(Utilities.slugify(group.getName())));
-
-	console.log(name);
+	$(element).parent().siblings('li').removeClass('active');
+	$(element).parent().addClass('active');
 
 	$('#edit-mode section').hide();
 	$('#' + name).show();
@@ -222,7 +220,7 @@ var processFormData = function() {
 			$.each(fields, function(i, input) {
 				// console.log(group.getName());
 				// have to be checked :(
-				if (group.getName() == 'Personal Data') {
+				if (group.getName() == '_Personal Data') {
 					element.addTuple(
 						new Tuple(
 							'label',
@@ -277,12 +275,12 @@ var renderFormData = function() {
 };
 
 var copyForm = function(button, selector) {
-	$(button).parent().before(
+	$(button).parent().prev().append(
 		$(selector).clone()
 	);
-	console.log($(button).closest('fieldset'));
+	// console.log($(button).closest('fieldset'));
 	// clear
-	$(button).closest('fieldset:last-child').find(':input').each(function(idx, itm) {
+	$(button).parent().prev().children('fieldset:last').find(':input').each(function(idx, itm) {
 		$(itm).val('');
 	});
 };
@@ -323,6 +321,11 @@ $(document).ready(function() {
 	// temporary start
 	startMode();
 	editMode();
+	// .then(function() {
+	setTimeout(function() {
+		showFormSection($('.nav-pills li a:first'));
+	}, 1000);
+	// });
 	// previewMode();
 
 	// mocks
