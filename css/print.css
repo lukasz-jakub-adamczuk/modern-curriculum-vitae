@@ -1,4 +1,8 @@
 
+#starter,
+#modes {
+	display: none;
+}
 
 h2,
 h3,
@@ -7,11 +11,24 @@ h4 {
 }
 
 .row > div {
-	display: inline-block;
+	/*display: inline-block; */
+	display: block;
+	float: left;
 }
 .col-md-4 {
-	width: 6cm;
+	width: 5cm;
+	/*background: red;*/
+	text-align: right;
+	margin-right: 1cm;
 }
 .col-md-8 {
-	width: 16cm;
+	width: 11.5cm;
+	/*background: blue;*/
+}
+.col-md-8.col-md-offset-4 {
+	width: 18cm
+}
+.col-md-4 span,
+.col-md-8 span {
+	line-height: 1;
 }

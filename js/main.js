@@ -322,7 +322,7 @@ $(document).ready(function() {
 		showFormSection($('.nav-pills li a:first'));
 	}, 1000);
 	// });
-	// previewMode();
+	
 
 
 	// sortable forms
@@ -340,6 +340,8 @@ $(document).ready(function() {
 
 	// mocks
 	completeFormInputs();
+
+	previewMode();
 });
 
 

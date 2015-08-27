@@ -23,6 +23,9 @@ section fieldset:hover {
 	/*border-color: #ccc;*/
 	/*background: #eee;*/
 }
+section label {
+	display: none;
+}
 section form:nth-child(even) {
 	/*background: #ace;*/
 }
