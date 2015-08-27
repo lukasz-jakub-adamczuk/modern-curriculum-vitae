@@ -2,13 +2,15 @@
 
 var completeFormInputs = function() {
 	// personal data
-	$('#personal-data [name=name]').val('John Smith');
-	$('#personal-data [name=email]').val('john.smith@email.com');
-	$('#personal-data [name=phone]').val('+1 500 500 500');
-	$('#personal-data [name=address]').val('Times Square, Manhattan, New York, NY 10036');
+	$('#personal-data [value=Name]').parent().next().children('input').val('John Smith');
+	$('#personal-data [value=Email]').parent().next().children('input').val('john.smith@email.com');
+	$('#personal-data [value=Mobile]').parent().next().children('input').val('+1 500 500 500');
+	$('#personal-data [value=Address]').parent().next().children('input').val('Times Square, Manhattan, New York, NY 10036');
+	$('#personal-data [value=Birthdate]').parent().next().children('input').val('Jan 1, 1970');
 
 	$('#personal-data button').click();
-	$('#personal-data [name=website]').val('https://www.nasa.gov/');
+	$('#personal-data fieldset:last').find('input:first').val('Website');
+	$('#personal-data fieldset:last').find('input:last').val('https://www.nasa.gov/');
 
 	// $('#personal-data button').click();
 

@@ -1,9 +1,5 @@
 console.log('All magic begins here...');
 
-// mcv = mcv || {};
-
-// mvc 
-
 var Utilities = {
 	slugify: function(text) {
 		return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
@@ -328,11 +324,22 @@ $(document).ready(function() {
 	// });
 	// previewMode();
 
+
+	// sortable forms
+	// var forms = [];
+	$.each($('form'), function(idx, itm) {
+		// var element = document.getElementById('personal-data-form');
+
+		Sortable.create(document.getElementById(itm.id), {
+			handle: 'fieldset',
+			animation: 150
+		});
+	});
+
+
+
 	// mocks
 	completeFormInputs();
 });
-
-
-
 
 

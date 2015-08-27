@@ -4,8 +4,9 @@
 	<title>Modern Curriculum Vitae</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" >
 	<link rel="stylesheet" type="text/css" media="all" href="css/base.css">
+	<link rel="stylesheet" type="text/css" media="print" href="css/print.css">
 
 	<!-- temporary to test pdf printing -->
 	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -57,13 +58,13 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Personal Data</h2>
-						<form class="form" role="form">
+						<form id="personal-data-form" class="form" role="form">
 							<fieldset class="row">
 								<div class="col-md-4">
-									<input type="text" class="form-control" name="label" value="Name" placeholder="Key">
+									<input type="text" class="form-control" name="label" value="Name" placeholder="like website">
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="value" value="John Doe" placeholder="Value">
+									<input type="text" class="form-control" name="value" placeholder="http://website.com">
 								</div>
 							</fieldset>
 							<fieldset class="row">
@@ -71,7 +72,7 @@
 									<input type="text" class="form-control" name="label" value="Address">
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="value" value="My Address 99, 12-345 City">
+									<input type="text" class="form-control" name="value" placeholder="My Address 99, 12-345 City">
 								</div>
 							</fieldset>
 							<fieldset class="row">
@@ -79,7 +80,7 @@
 									<input type="text" class="form-control" name="label" value="Mobile">
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="value" value="+1 500 123 456">
+									<input type="text" class="form-control" name="value" placeholder="+1 500 123 456">
 								</div>
 							</fieldset>
 							<fieldset class="row">
@@ -87,7 +88,7 @@
 									<input type="text" class="form-control" name="label" value="Email">
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="value" value="john.doe@email.com">
+									<input type="text" class="form-control" name="value" placeholder="john.doe@email.com">
 								</div>
 							</fieldset>
 							<fieldset class="row">
@@ -95,7 +96,7 @@
 									<input type="text" class="form-control" name="label" value="Birthdate">
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="value" value="Jan 1, 1970">
+									<input type="text" class="form-control" name="value" placeholder="Jan 1, 1970">
 								</div>
 							</fieldset>
 							<!--<fieldset>
@@ -142,7 +143,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Education</h2>
-						<form class="form">
+						<form id="education-form" class="form">
 							<fieldset>
 								<div class="form-group">
 									<label>College or University</label>
@@ -179,7 +180,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Work Experience</h2>
-						<form class="form">
+						<form id="work-experience-form" class="form">
 							<fieldset>
 								<div class="form-group">
 									<label>Company name</label>
@@ -212,7 +213,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Projects</h2>
-						<form class="form">
+						<form id="projects-form" class="form">
 							<fieldset>
 								<div class="form-group">
 									<label>Company name</label>
@@ -245,7 +246,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Skills</h2>
-						<form class="form">
+						<form id="skills-form" class="form">
 							<fieldset class="row">
 								<div class="col-md-4 form-group">
 									<label>Group or type</label>
@@ -268,7 +269,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Achievements and Awards</h2>
-						<form class="form">
+						<form id="achievements-and-awards-form" class="form">
 							<fieldset class="row">
 								<div class="col-md-4 form-group">
 									<label>When happened</label>
@@ -291,7 +292,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Languages</h2>
-						<form class="form">
+						<form id="languages-form" class="form">
 							<fieldset class="row">
 								<div class="col-md-4 form-group">
 									<label>Language</label>
@@ -314,7 +315,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Interests and Activites</h2>
-						<form class="form">
+						<form id="interests-and-activities-form" class="form">
 							<fieldset>
 								<div class="form-group">
 									<label>Size</label>
@@ -363,7 +364,7 @@
 
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
-	<script type="text/javascript" src="bower_components/require/build/require.min.js"></script>
+	<!-- // <script type="text/javascript" src="bower_components/require/build/require.min.js"></script> -->
 
 	<!-- templates -->
 	<script id="row-group-template" type="text/x-handlebars-template">
@@ -397,6 +398,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>      -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>  -->
 
+	<script type="text/javascript" src="js/Sortable.js"></script>
 	<script type="text/javascript" src="js/mock.js"></script>
 
 	<script type="text/javascript" src="js/main.js"></script>
