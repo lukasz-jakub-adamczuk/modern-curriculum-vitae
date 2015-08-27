@@ -1,0 +1,17 @@
+
+
+h2,
+h3,
+h4 {
+	margin-left: 6cm;
+}
+
+.row > div {
+	display: inline-block;
+}
+.col-md-4 {
+	width: 6cm;
+}
+.col-md-8 {
+	width: 16cm;
+}

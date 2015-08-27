@@ -14,7 +14,14 @@ section form {
 section fieldset {
 	/*padding: 1em;*/
 	margin-bottom: .5em;
+	/*padding-top: 15px;*/
+	/*padding-left: 1em;*/
+	/*border-left: 1em solid transparent;*/
 	/*border-bottom: 1px solid #ccc;*/
+}
+section fieldset:hover {
+	/*border-color: #ccc;*/
+	/*background: #eee;*/
 }
 section form:nth-child(even) {
 	/*background: #ace;*/
