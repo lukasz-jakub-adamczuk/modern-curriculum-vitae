@@ -23,6 +23,10 @@ section fieldset:hover {
 	/*border-color: #ccc;*/
 	/*background: #eee;*/
 }
+
+#interests-and-activities-form fieldset {
+	display: inline-block;
+}
 section label {
 	display: none;
 }
@@ -46,4 +50,15 @@ section form:nth-child(even) {
 #preview-mode .key {
 	font-family: Georgia, serif;
 	font-style: italic;
+}
+
+
+@media (min-width: 768px) {
+	.form-inline input {
+         border-radius: 6px 0 0 6px;
+     }
+    .form-inline select {
+        border-radius: 0 6px 6px 0;
+        border-left-width: 0;
+    }
 }

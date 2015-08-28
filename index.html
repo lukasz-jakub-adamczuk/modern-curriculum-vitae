@@ -315,24 +315,22 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Interests and Activites</h2>
-						<form id="interests-and-activities-form" class="form">
-							<fieldset class="row">
-								<div class="col-md-2 form-group">
-									<select class="form-control" name="size">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-									</select>
+						<form id="interests-and-activities-form" class="form-inline">
+							<fieldset>
+								<!-- <div class="row"> -->
+								<div class="input-group col-md-3">
+									<input class="form-control" type="text" value="" placeholder="Keyword" name="q">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Size <span class="caret"></span></button>
+										<ul class="dropdown-menu">
+											<li><a href="#">1</a></li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+										</ul>
+										<input type="hidden" name="category" class="category">
+									</div><!-- /btn-group -->
 								</div>
-								<div class="col-md-4 form-group">
-									<label>Tag</label>
-									<input type="text" class="form-control" name="value" placeholder="describe you as ">
-								</div>
+								<!-- </div> -->
 							</fieldset>
 						</form>
 						<div class="editor">
@@ -399,6 +397,13 @@
 
 	<script type="text/javascript" src="js/Sortable.js"></script>
 	<script type="text/javascript" src="js/mock.js"></script>
+
+	<script type="text/javascript" src="js/utilities.js"></script>
+	<script type="text/javascript" src="js/tuple.js"></script>
+	<script type="text/javascript" src="js/element.js"></script>
+	<script type="text/javascript" src="js/group.js"></script>
+	<script type="text/javascript" src="js/transformer.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 
 	<script type="text/javascript" src="js/main.js"></script>
 	
