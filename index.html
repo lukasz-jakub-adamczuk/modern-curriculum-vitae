@@ -16,31 +16,19 @@
 
 <body>
 	<div class="container">
-		<!-- <div id="intro-mode"> -->
-			<!-- <div class="header clearfix">
-				<nav>
-					<ul class="nav nav-pills pull-right">
-						<li role="presentation" class="active"><a href="#">Home</a></li>
-						<li role="presentation"><a href="#">About</a></li>
-						<li role="presentation"><a href="#">Contact</a></li>
-					</ul>
-				</nav>
-				<h3 class="text-muted">Project name</h3>
-			</div> -->
-			<div id="starter" class="jumbotron">
-				<h1>Modern Curriculum Vitae</h1>
-				<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-				<p>
-					<button class="btn btn-success btn-lg" id="start-mode-tgr" role="button">Create now</button>
-				</p>
-			</div>
-			<div id="modes" class="jumbotron" style="display: none;">
-				<p>
-					<button class="btn btn-default btn-lg" id="edit-mode-tgr" role="button">Edit mode</button>
-					<button class="btn btn-default btn-lg" id="preview-mode-tgr" role="button">Preview mode</button>
-				</p>
-			</div>
-		<!-- </div> -->
+		<div id="starter" class="jumbotron">
+			<h1>Modern Curriculum Vitae</h1>
+			<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			<p>
+				<button class="btn btn-success btn-lg" id="start-mode-tgr" role="button">Create now</button>
+			</p>
+		</div>
+		<div id="modes" class="jumbotron" style="display: none;">
+			<p>
+				<button class="btn btn-default btn-lg" id="edit-mode-tgr" role="button">Edit mode</button>
+				<button class="btn btn-default btn-lg" id="preview-mode-tgr" role="button">Preview mode</button>
+			</p>
+		</div>
 		<div id="edit-mode" style="display: none;">
 			<nav class="cv-sections">
 				<ul class="nav nav-pills nav-justified">
@@ -353,7 +341,10 @@
 		</div>
 		<div id="preview-mode" style="display: none;">
 			<div class="container">
-				...
+				<div class="row">
+					<h1 class="col-md-8 col-md-offset-4"></h1>
+				</div>
+				<div class="content"></div>
 			</div>
 		</div>
 	</div>
@@ -386,7 +377,6 @@
 				<h2>{{name}}</h2>
 			</div>
 		</div>
-		<!-- <div id="{{key}}-preview" class="data"></div> -->
 	</script>
 	 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>      -->

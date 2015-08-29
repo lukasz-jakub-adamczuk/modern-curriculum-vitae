@@ -12,25 +12,31 @@ var completeFormInputs = function() {
 	$('#personal-data fieldset:last').find('input:first').val('Website');
 	$('#personal-data fieldset:last').find('input:last').val('https://www.nasa.gov/');
 
-	// $('#personal-data button').click();
-
+	// education
 	$('#education [name=school]').val('Massachusetts Institute of Technology');
 	$('#education [name=location]').val('Cambridge, Massachusetts, United States');
 	$('#education [name=from]').val('Oct 1999');
 	$('#education [name=to]').val('Jun 2003');
 	$('#education [name=description]').val('Master of Science in Engineering');
 
-
+	// work experience
 	$('#work-experience [name=company]').val('National Aeronautics and Space Administration');
 	$('#work-experience [name=location]').val('Washington, D.C.');
 	$('#work-experience [name=from]').val('Jan 2010');
 	$('#work-experience [name=to]').val('present');
 	$('#work-experience [name=description]').val('Responsible for the civilian space program as well as aeronautics and aerospace research.');
 
+	// projects
 	$('#projects [name=company]').val('National Aeronautics and Space Administration');
 	$('#projects [name=from]').val('Jan 2011');
 	$('#projects [name=to]').val('Dec 2012');
 	$('#projects [name=description]').val('Delivering at least four crew members to the ISS.');
+
+	$('#projects button').click();
+	$('#projects [name=company]:last').val('National Aeronautics and Space Administration');
+	$('#projects [name=from]:last').val('Jan 2012');
+	$('#projects [name=to]:last').val('Dec 2014');
+	$('#projects [name=description]:last').val('Research and development into human spaceflight concepts.');
 
 	// skills
 	$('#skills [name=group]').val('Telecomunication');

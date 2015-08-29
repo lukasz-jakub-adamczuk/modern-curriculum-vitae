@@ -8,3 +8,20 @@ function Element() {
 Element.prototype.addTuple = function(tuple) {
 	this.tuples.push(tuple);
 };
+
+Element.prototype.hasTuple = function(label) {
+	for (var tuple in this.tuples) {
+		if (this.tuples[tuple].value === label) {
+			return true;
+		}
+	}
+	return false;
+};
+
+Element.prototype.getTupleValue = function(label) {
+	for (var tuple in this.tuples) {
+		if (this.tuples[tuple].label === label) {
+			return this.tuples[tuple].value;
+		}
+	}
+};

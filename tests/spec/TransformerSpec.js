@@ -46,8 +46,6 @@ describe('Transformer', function() {
     element.addTuple(new Tuple('to', 'Jun 2004'));
     element.addTuple(new Tuple('description', 'Delivering at least four crew members to the ISS.'));
 
-    console.log(Transformer.initialize(element));
-
     expect(Transformer.initialize(element)).toEqual(result);
   });
 
@@ -58,6 +56,33 @@ describe('Transformer', function() {
     element.addTuple(new Tuple('skills', 'Calling and answering to astronauts'));
 
     console.log(Transformer.initialize(element));
+
+    expect(Transformer.initialize(element)).toEqual(result);
+  });
+
+  it('can transform Achievements and Awards section', function() {
+    var result = {when: 'Jun 2012', description: 'Flying in balloon over Atlantic Ocean'};
+    
+    element.addTuple(new Tuple('when', 'Jun 2012'));
+    element.addTuple(new Tuple('description', 'Flying in balloon over Atlantic Ocean'));
+
+    expect(Transformer.initialize(element)).toEqual(result);
+  });
+
+  it('can transform Languages section', function() {
+    var result = {language: 'English', level: 'Excellent, speaking and writing'};
+    
+    element.addTuple(new Tuple('language', 'English'));
+    element.addTuple(new Tuple('level', 'Excellent, speaking and writing'));
+
+    expect(Transformer.initialize(element)).toEqual(result);
+  });
+
+  it('can transform Intersts and Activities section', function() {
+    var result = {what: 'Swimming', size: '3'};
+    
+    element.addTuple(new Tuple('what', 'Swimming'));
+    element.addTuple(new Tuple('size', '3'));
 
     expect(Transformer.initialize(element)).toEqual(result);
   });

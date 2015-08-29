@@ -36,7 +36,6 @@ var showFormSection = function(element) {
 	$('#' + name).show();
 };
 var processFormData = function() {
-
 	var sections = $('section');
 
 	groups = [];
@@ -73,6 +72,7 @@ var processFormData = function() {
 var renderFormData = function() {
 	var html, header, row;
 
+	html = '';
 	header = Handlebars.compile($('#group-header-preview-template').html()),
 	row = Handlebars.compile($("#row-group-template").html());
 
@@ -81,26 +81,31 @@ var renderFormData = function() {
 
 		$.each(group.elements, function(idx, itm) {
 			var object, transform;
-				
+			
 			transform = Utilities.toCamelCase(Utilities.slugify(group.getName())) + 'Transform';
 
 			object = Transformer.initialize(itm);
 			object = (typeof Transformer[transform] == 'function') ? Transformer[transform](object) : Transformer.defaultTransform(object);
 
 			// console.log(Transformer.change(transform));
-			html += row(object);
+			console.log(itm)
+			if (itm.hasTuple('Name')) {
+				$('#preview-mode h1').text(itm.getTupleValue('value'));
+				// console.log(itm.getTupleValue('value'));
+			} else {
+				html += row(object);
+			}
 		});
 	});
 
-	$('#preview-mode .container').html(html);
+	$('#preview-mode .content').html(html);
 };
 
 var copyForm = function(button, selector) {
 	$(button).parent().prev().append(
 		$(selector).clone()
 	);
-	// console.log($(button).closest('fieldset'));
-	// clear
+	// clear cloned fieldset
 	$(button).parent().prev().children('fieldset:last').find(':input').each(function(idx, itm) {
 		$(itm).val('');
 	});

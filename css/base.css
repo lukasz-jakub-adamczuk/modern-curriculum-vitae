@@ -38,9 +38,6 @@ section form:nth-child(even) {
 }
 
 
-#preview-mode h1 {
-	color: black;
-}
 #preview-mode h2 {
 	font-family: 'Lato';
 	color: maroon;

@@ -4,9 +4,6 @@ var Transformer = {
 	initialize: function(element) {
 		var item = {};
 
-		// element.tuples.map(function(idx, itm) {
-		// 	item[itm.label] = itm.value;
-		// });
 		for (var tuple in element.tuples) {
 			item[element.tuples[tuple].label] = element.tuples[tuple].value;
 		};
