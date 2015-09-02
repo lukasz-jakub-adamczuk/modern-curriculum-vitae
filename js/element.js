@@ -9,9 +9,9 @@ Element.prototype.addTuple = function(tuple) {
 	this.tuples.push(tuple);
 };
 
-Element.prototype.hasTuple = function(label) {
+Element.prototype.hasTupleValue = function(label) {
 	for (var tuple in this.tuples) {
-		if (this.tuples[tuple].value === label) {
+		if (this.tuples[tuple].label === label) {
 			return true;
 		}
 	}

@@ -89,7 +89,7 @@ var renderFormData = function() {
 
 			// console.log(Transformer.change(transform));
 			console.log(itm)
-			if (itm.hasTuple('Name')) {
+			if (itm.hasTupleValue('Name')) {
 				$('#preview-mode h1').text(itm.getTupleValue('value'));
 				// console.log(itm.getTupleValue('value'));
 			} else {
